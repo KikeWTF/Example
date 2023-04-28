@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  example:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: example
+    restart: unless-stopped
+    ports: [80:80]
+    volumes:
+      - ./www:/usr/local/apache2/htdocs:ro
