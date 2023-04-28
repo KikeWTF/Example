@@ -9,4 +9,4 @@ services:
     volumes:
       - ./www:/usr/local/apache2/htdocs:ro
       - ./scripts/patch.sh:/docker-entrypoint.d/patch.sh:ro
-    entrypoint: ["sh", "-c", "sh /docker-entrypoint.d/patch.sh && /usr/local/bin/httpd-foreground"]
+    entrypoint: ["/bin/sh", "-c", "/bin/sh /docker-entrypoint.d/patch.sh && /usr/local/bin/httpd-foreground"]
