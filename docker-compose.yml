@@ -2,11 +2,11 @@ version: '3.8'
 
 services:
   example:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: httpd:alpine
     container_name: example
     restart: unless-stopped
     ports: [80:80]
     volumes:
       - ./www:/usr/local/apache2/htdocs:ro
+      - ./scripts/patch.sh:/docker-entrypoint.d/patch.sh:ro
+    entrypoint: ["sh", "-c", "sh /docker-entrypoint.d/patch.sh && /usr/local/bin/httpd-foreground"]
